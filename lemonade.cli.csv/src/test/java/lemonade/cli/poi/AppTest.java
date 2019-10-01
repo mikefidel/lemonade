@@ -1,4 +1,4 @@
-package org.ndextools;
+package lemonade.cli.poi;
 
 import static org.junit.Assert.assertTrue;
 
