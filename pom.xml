@@ -25,6 +25,16 @@
         <developerConnection>scm:git:git@github.com:ndextools/lemonade.git</developerConnection>
     </scm>
 
+    <modules>
+        <module>lemonade.cli.csv</module>
+        <module>lemonade.cli.poi</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven-compiler-plugin>11</maven-compiler-plugin>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -40,6 +50,9 @@
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>3.1.0</version>
+                    <configuration>
+                        <outputDirectory>../mods</outputDirectory>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
@@ -75,6 +88,8 @@
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>3.1.2</version>
                     <configuration>
+                        <outputDirectory>../mods</outputDirectory>
+                        <finalName>${project.artifactId}</finalName>
                         <forceCreation>true</forceCreation>
                         <archive>
                             <manifestEntries>
@@ -83,6 +98,26 @@
                         </archive>
                     </configuration>
                 </plugin>
+<!--                <plugin>-->
+<!--                    <groupId>org.apache.maven.plugins</groupId>-->
+<!--                    <artifactId>maven-dependency-plugin</artifactId>-->
+<!--                    <version>3.1.1</version>-->
+<!--                    <executions>-->
+<!--                        <execution>-->
+<!--                            <id>copy</id>-->
+<!--                            <phase>package</phase>-->
+<!--                            <goals>-->
+<!--                                <goal>copy</goal>-->
+<!--                            </goals>-->
+<!--                        </execution>-->
+<!--                    </executions>-->
+<!--                    <configuration>-->
+<!--                        <outputDirectory>${project.build.outputDirectory}/mods</outputDirectory>-->
+<!--                        <overWriteReleases>true</overWriteReleases>-->
+<!--                        <overWriteSnapshots>true</overWriteSnapshots>-->
+<!--                        <overWriteIfNewer>true</overWriteIfNewer>-->
+<!--                    </configuration>-->
+<!--                </plugin>-->
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>
                     <version>3.0.0-M1</version>
@@ -102,15 +137,5 @@
             </plugins>
         </pluginManagement>
     </build>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven-compiler-plugin>11</maven-compiler-plugin>
-    </properties>
-
-    <modules>
-        <module>lemonade.cli.csv</module>
-        <module>lemonade.cli.poi</module>
-    </modules>
 
 </project>
