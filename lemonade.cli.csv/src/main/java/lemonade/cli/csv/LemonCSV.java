@@ -1,8 +1,27 @@
 package lemonade.cli.csv;
 
+import java.util.Arrays;
+
 public class LemonCSV {
 
-    public static void main( String[] args ) {
-        System.out.println( "Package lemon.cli.csv" );
+    private final String[] cmdLine;
+
+    public LemonCSV(final String[] cmdLine) {
+        this.cmdLine = cmdLine;
+    }
+
+    public static void main(final String[] args ) {
+        LemonCSV app = new LemonCSV(args);
+        app.run();
+    }
+
+    public void run() {
+    }
+
+    @Override
+    public String toString() {
+        return "LemonCSV{" +
+                "commandLine=" + Arrays.toString(cmdLine) +
+                '}';
     }
 }
