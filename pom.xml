@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -26,6 +25,7 @@
     </scm>
 
     <modules>
+        <module>lemonade.base</module>
         <module>lemonade.cli.csv</module>
         <module>lemonade.cli.poi</module>
     </modules>
@@ -98,26 +98,6 @@
                         </archive>
                     </configuration>
                 </plugin>
-<!--                <plugin>-->
-<!--                    <groupId>org.apache.maven.plugins</groupId>-->
-<!--                    <artifactId>maven-dependency-plugin</artifactId>-->
-<!--                    <version>3.1.1</version>-->
-<!--                    <executions>-->
-<!--                        <execution>-->
-<!--                            <id>copy</id>-->
-<!--                            <phase>package</phase>-->
-<!--                            <goals>-->
-<!--                                <goal>copy</goal>-->
-<!--                            </goals>-->
-<!--                        </execution>-->
-<!--                    </executions>-->
-<!--                    <configuration>-->
-<!--                        <outputDirectory>${project.build.outputDirectory}/mods</outputDirectory>-->
-<!--                        <overWriteReleases>true</overWriteReleases>-->
-<!--                        <overWriteSnapshots>true</overWriteSnapshots>-->
-<!--                        <overWriteIfNewer>true</overWriteIfNewer>-->
-<!--                    </configuration>-->
-<!--                </plugin>-->
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>
                     <version>3.0.0-M1</version>

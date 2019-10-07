@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>lemonade.cli.poi</artifactId>
-    <name>lemonade.cli.poi</name>
+    <artifactId>lemonade.base</artifactId>
+    <name>lemonade.base</name>
 
 </project>
