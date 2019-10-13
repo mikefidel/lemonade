@@ -25,9 +25,6 @@
     </scm>
 
     <modules>
-        <module>lemonade.base</module>
-        <module>lemonade.cli.csv</module>
-        <module>lemonade.cli.poi</module>
     </modules>
 
     <properties>
