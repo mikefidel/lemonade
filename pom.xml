@@ -8,7 +8,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>NDEx Lemonade</name>
-    <description>Redesign of MorphCX to run as a multi-module Java application supporting both GUI and CLI front ends.
+    <description>Redesign of MorphCX as a multi-module Java application supporting both GUI and CLI front ends.
     </description>
     <url>https://github.com/ndextools/lemonade</url>
     <licenses>
@@ -25,6 +25,9 @@
     </scm>
 
     <modules>
+        <module>lemonade.configuration</module>
+        <module>lemonade.csv</module>
+        <module>lemonade.poi</module>
     </modules>
 
     <properties>
