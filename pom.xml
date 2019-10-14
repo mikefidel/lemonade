@@ -28,6 +28,8 @@
         <module>lemonade.configuration</module>
         <module>lemonade.csv</module>
         <module>lemonade.poi</module>
+        <module>lemoncsv</module>
+        <module>lemonpoi</module>
     </modules>
 
     <properties>
