@@ -21,4 +21,28 @@
     <artifactId>lemonpoi</artifactId>
     <name>lemonpoi</name>
 
+    <build>
+        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+            <plugins>
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.1.2</version>
+                    <configuration>
+                        <outputDirectory>../mods</outputDirectory>
+                        <finalName>${project.artifactId}</finalName>
+                        <forceCreation>true</forceCreation>
+                        <archive>
+                            <manifest>
+                                <mainClass>lemonpoi.LemonPOI</mainClass>
+                            </manifest>
+                            <manifestEntries>
+                                <Created-By>Mike Fidel</Created-By>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
 </project>
