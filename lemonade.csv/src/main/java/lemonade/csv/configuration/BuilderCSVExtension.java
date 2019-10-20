@@ -1,9 +1,9 @@
 package lemonade.csv.configuration;
 
-import lemonade.configuration.BuilderBase;
+import lemonade.configuration.Builder;
 import lemonade.configuration.Configuration;
 
-public interface BuilderCSVExtension extends BuilderBase {
+public interface BuilderCSVExtension extends Builder {
 
     void setDelimiter(char delimiter);
 

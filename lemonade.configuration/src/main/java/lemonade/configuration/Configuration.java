@@ -63,4 +63,5 @@ public class Configuration {
     public Optional<String> getOutputFilename() {
         return outputFilename;
     }
+
 }
