@@ -1,14 +1,14 @@
 package lemonade.configuration;
 
-public abstract class CLITemplate implements Template {
-    protected String[] commandline;
+import org.apache.commons.cli.*;
 
-    public CLITemplate(String[] commandline) {
+public abstract class CLITemplate implements Template {
+    protected final String[] commandline;
+
+    public CLITemplate(final String[] commandline) {
         this.commandline = commandline;
     }
 
-    public void configure(Builder builder) {
-        builder.setCommandline(this.commandline);
-    }
+    public void configure(Builder builder) throws ParseException { }
 
 }

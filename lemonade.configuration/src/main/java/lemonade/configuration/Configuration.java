@@ -1,5 +1,6 @@
 package lemonade.configuration;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 public class Configuration {
@@ -64,4 +65,17 @@ public class Configuration {
         return outputFilename;
     }
 
+    @Override
+    public String toString() {
+        return "Configuration{" +
+                "commandline=" + Arrays.toString(commandline) +
+                ", processId=" + processId +
+                ", flagIsDebugMode=" + flagIsDebugMode +
+                ", flagShowHelpPrompt=" + flagShowHelpPrompt +
+                ", flagUsesInputFile=" + flagUsesInputFile +
+                ", flagUsesOutputFile=" + flagUsesOutputFile +
+                ", inputFilename=" + inputFilename +
+                ", outputFilename=" + outputFilename +
+                '}';
+    }
 }

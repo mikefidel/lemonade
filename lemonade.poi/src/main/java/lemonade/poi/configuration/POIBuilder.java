@@ -2,6 +2,8 @@ package lemonade.poi.configuration;
 
 import lemonade.configuration.Builder;
 import lemonade.configuration.Configuration;
+
+import java.util.Arrays;
 import java.util.Optional;
 
 public class POIBuilder implements Builder {
@@ -67,4 +69,17 @@ public class POIBuilder implements Builder {
         // Todo optional processing
     }
 
+    @Override
+    public String toString() {
+        return "POIBuilder{" +
+                "commandline=" + Arrays.toString(commandline) +
+                ", processId=" + processId +
+                ", flagIsDebugMode=" + flagIsDebugMode +
+                ", flagShowHelpPrompt=" + flagShowHelpPrompt +
+                ", flagUsesInputFile=" + flagUsesInputFile +
+                ", flagUsesOutputFile=" + flagUsesOutputFile +
+                ", inputFilename=" + inputFilename +
+                ", outputFilename=" + outputFilename +
+                '}';
+    }
 }

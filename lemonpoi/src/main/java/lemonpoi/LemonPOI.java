@@ -23,7 +23,7 @@ public class LemonPOI {
                 Optional.empty());
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
 
         try {
             POITemplate template = new POITemplate(args);
@@ -37,6 +37,6 @@ public class LemonPOI {
     }
 
     public static Configuration getCfg() {
-        return cfg;
+        return LemonPOI.cfg;
     }
 }
