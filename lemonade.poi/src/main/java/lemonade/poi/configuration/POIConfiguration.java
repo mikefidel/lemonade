@@ -25,4 +25,18 @@ public class POIConfiguration extends Configuration {
                 inputFilename,
                 outputFilename);
     }
+
+    @Override
+    public String toString() {
+        return "POIConfiguration{" +
+                "processId=" + processId +
+                ", flagIsDebugMode=" + flagIsDebugMode +
+                ", flagShowHelpPrompt=" + flagShowHelpPrompt +
+                ", flagUsesInputFile=" + flagUsesInputFile +
+                ", flagUsesOutputFile=" + flagUsesOutputFile +
+                ", inputFilename=" + inputFilename +
+                ", outputFilename=" + outputFilename +
+                '}';
+    }
+
 }

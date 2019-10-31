@@ -3,40 +3,36 @@ package lemonpoi;
 import lemonade.configuration.Builder;
 import lemonade.configuration.Configuration;
 import lemonade.poi.configuration.POIBuilder;
-import lemonade.poi.configuration.POIConfiguration;
 import lemonade.poi.configuration.POITemplate;
 
-import java.util.Optional;
-
 public class LemonPOI {
-    private static Configuration cfg;
+    private Configuration cfg;
 
-    static {
-        LemonPOI.cfg = new POIConfiguration(
-                new String[0],
-                Optional.empty(),
-                false,
-                false,
-                false,
-                false,
-                Optional.empty(),
-                Optional.empty());
-    }
-
-    public static void main(final String[] args) {
+    public void run(final String[] args) {
 
         try {
             POITemplate template = new POITemplate(args);
             Builder builder = new POIBuilder();
-            template.configure(builder);
-            LemonPOI.cfg = builder.getInstance();
+            cfg = template.configure(builder);
+            dispatchByOperation(cfg);
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
         }
+
+        System.err.println( cfg.toString() );  // TODO remove this line
     }
 
-    public static Configuration getCfg() {
-        return LemonPOI.cfg;
+    private void dispatchByOperation(Configuration cfg) {
+        if ( !cfg.isShowHelpPrompt() ) {
+            // TODO call abstract factory to initialize run
+            System.err.println("EXECUTING A POI CONVERSION");
+        }
     }
+
+    public static void main(final String[] args) {
+        LemonPOI app = new LemonPOI();
+        app.run(args);
+    }
+
 }
