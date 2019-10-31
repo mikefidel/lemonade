@@ -6,7 +6,7 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
-public class POITemplate extends CLITemplate {
+public final class POITemplate extends CLITemplate {
 
     public POITemplate(final String[] args) {
         super(args);

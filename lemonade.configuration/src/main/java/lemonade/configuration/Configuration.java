@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class Configuration {
     private final String[] commandline;
-    protected final Optional<String> processId;
+    protected final String processId;
     protected final boolean flagIsDebugMode;
     protected final boolean flagShowHelpPrompt;
     protected final boolean flagUsesInputFile;
@@ -15,7 +15,7 @@ public class Configuration {
 
     public Configuration(
             String[] commandline,
-            Optional<String> processId,
+            String processId,
             boolean flagIsDebugMode,
             boolean flagShowHelpPrompt,
             boolean flagUsesInputFile,
@@ -37,7 +37,7 @@ public class Configuration {
         return commandline;
     }
 
-    public Optional<String> getProcessId() {
+    public String getProcessId() {
         return processId;
     }
 

@@ -19,14 +19,12 @@ public class LemonPOI {
             e.printStackTrace();
             System.exit(1);
         }
-
-        System.err.println( cfg.toString() );  // TODO remove this line
     }
 
     private void dispatchByOperation(Configuration cfg) {
+
         if ( !cfg.isShowHelpPrompt() ) {
             // TODO call abstract factory to initialize run
-            System.err.println("EXECUTING A POI CONVERSION");
         }
     }
 

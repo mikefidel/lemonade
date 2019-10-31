@@ -1,5 +1,8 @@
 package lemonade.configuration;
 
+import java.lang.management.ManagementFactory;
+import java.util.Optional;
+
 import org.apache.commons.cli.*;
 
 public abstract class CLITemplate implements Template {
@@ -13,7 +16,6 @@ public abstract class CLITemplate implements Template {
     /*
     Methods implemented by subclasses.
      */
-
     protected abstract Options defineOptions() throws ParseException;
     protected abstract void resolveOptions(CommandLine parsedCommandline, Builder builder);
 
@@ -26,7 +28,6 @@ public abstract class CLITemplate implements Template {
      * @throws ParseException when an invalid option is found in the commandline passed when the
      *                        application is invoked.
      */
-
     public final Configuration configure(Builder builder) throws ParseException {
         CommandLine parsedCommandline;
 
@@ -54,18 +55,25 @@ public abstract class CLITemplate implements Template {
     }
 
     private void resolveSharedOptions(CommandLine parsedCommandline, Builder builder) {
-        builder.setCommandline(commandline);
+        processCommandline(builder);
+        processPID(builder);
+        processShowHelpFlag(builder, parsedCommandline);
+        processDebugModeFilag(builder, parsedCommandline);
+        // TODO other base options
 
+    }
+
+    private void processDebugModeFilag(Builder builder, CommandLine parsedCommandline) {
+        builder.setIsDebugMode( parsedCommandline.hasOption(CLIOptionConstants.LONG_OPT_DEBUG ) ? true : false );
+    }
+
+    private void processShowHelpFlag(Builder builder, CommandLine parsedCommandline) {
         if (parsedCommandline.hasOption((CLIOptionConstants.LONG_OPT_HELP))) {
             builder.setShowHelpPrompt(true);
             printHelpText();
         } else {
             builder.setShowHelpPrompt(false);
         }
-
-        builder.setIsDebugMode( parsedCommandline.hasOption(CLIOptionConstants.LONG_OPT_DEBUG ) ? true : false );
-        // TODO other base options
-
     }
 
     private void printHelpText() {
@@ -74,6 +82,15 @@ public abstract class CLITemplate implements Template {
         String footer = "";
         HelpFormatter formatter = new HelpFormatter();
         formatter.printHelp(132, prefix, header, optionDefinitions, footer, true);
+    }
+
+    private void processPID(Builder builder) {
+        String pid = ManagementFactory.getRuntimeMXBean().getName().split("@")[0];
+        builder.setProcessId(pid);
+    }
+
+    private void processCommandline(Builder builder) {
+        builder.setCommandline(commandline);
     }
 
     public static class CLIOptionConstants {

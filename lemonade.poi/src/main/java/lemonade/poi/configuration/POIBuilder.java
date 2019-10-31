@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class POIBuilder implements Builder {
     private String[] commandline;
-    private Optional<String> processId;
+    private String processId;
     private boolean flagIsDebugMode;
     private boolean flagShowHelpPrompt;
     private boolean flagUsesInputFile;
@@ -35,8 +35,8 @@ public class POIBuilder implements Builder {
     }
 
     @Override
-    public void setProcessId(Optional<String> processId) {
-    // Todo optional processing
+    public void setProcessId(String pid) {
+        this.processId = pid;
     }
 
     @Override

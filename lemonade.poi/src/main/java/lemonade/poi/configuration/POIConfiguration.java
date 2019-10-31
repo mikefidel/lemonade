@@ -8,7 +8,7 @@ public class POIConfiguration extends Configuration {
 
     public POIConfiguration(
             String[] commandline,
-            Optional<String> processId,
+            String processId,
             boolean flagIsDebugMode,
             boolean flagShowHelpPrompt,
             boolean flagUsesInputFile,

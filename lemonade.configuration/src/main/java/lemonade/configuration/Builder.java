@@ -8,7 +8,7 @@ public interface Builder {
 
     void setCommandline(String[] commandline);
 
-    void setProcessId(Optional<String> processId);
+    void setProcessId(String processId);
 
     void setIsDebugMode(boolean debugMode);
 
