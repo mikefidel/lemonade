@@ -8,7 +8,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>NDEx Lemonade</name>
-    <description>Redesign of MorphCX to run as a multi-module Java application supporting both GUI and CLI front ends.
+    <description>Redesign of MorphCX as a multi-module Java application supporting both GUI and CLI front ends.
     </description>
     <url>https://github.com/ndextools/lemonade</url>
     <licenses>
@@ -25,9 +25,11 @@
     </scm>
 
     <modules>
-        <module>lemonade.base</module>
-        <module>lemonade.cli.csv</module>
-        <module>lemonade.cli.poi</module>
+        <module>lemonade.configuration</module>
+        <module>lemonade.csv</module>
+        <module>lemonade.poi</module>
+        <module>lemoncsv</module>
+        <module>lemonpoi</module>
     </modules>
 
     <properties>
@@ -36,11 +38,33 @@
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.5.2</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-cli/commons-cli -->
+        <dependency>
+            <groupId>commons-cli</groupId>
+            <artifactId>commons-cli</artifactId>
+            <version>1.4</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-csv -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.7</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>4.1.0</version>
         </dependency>
     </dependencies>
 

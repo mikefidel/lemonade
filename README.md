@@ -1,6 +1,6 @@
 # ndex-lemonade
 
-[UNDER DEVELOPMENT] Redesign of MorphCX to run as a multi-module Java application 
+[UNDER DEVELOPMENT] Redesign of MorphCX as a multi-module Java application 
 supporting both GUI and CLI front ends.
 
 The development objectives are to:
