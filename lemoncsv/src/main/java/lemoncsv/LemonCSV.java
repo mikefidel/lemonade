@@ -1,18 +1,37 @@
 package lemoncsv;
 
+import lemonade.configuration.Builder;
 import lemonade.configuration.Configuration;
+import lemonade.csv.configuration.CSVBuilder;
+import lemonade.csv.configuration.CSVTemplate;
 
 public class LemonCSV {
-    Configuration cfg;
+    private Configuration cfg;
 
-    public static void main(String[] args) {
+    public void run(final String[] args) {
+        String appName = this.getClass().getSimpleName().toLowerCase();
 
-        LemonCSV app = new LemonCSV();
-        app.start();
+        try {
+            CSVTemplate template = new CSVTemplate(args, appName);
+            Builder builder = new CSVBuilder();
+            cfg = template.configure(builder);
+            dispatchByOperation(cfg);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 
-    public void start() {
-        System.err.println("LemonCSV started");
+    private void dispatchByOperation(Configuration cfg) {
+
+        if ( !cfg.isShowHelpPrompt() ) {
+            // TODO call abstract factory to initialize run
+        }
+    }
+
+    public static void main(final String[] args) {
+        LemonCSV app = new LemonCSV();
+        app.run(args);
     }
 
 }

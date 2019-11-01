@@ -10,7 +10,8 @@ public class CSVConfiguration extends Configuration {
 
     public CSVConfiguration(
             String[] commandline,
-            Optional<String> processId,
+            String appName,
+            String processId,
             boolean flagIsDebugMode,
             boolean flagShowHelpPrompt,
             boolean flagUsesInputFile,
@@ -21,6 +22,7 @@ public class CSVConfiguration extends Configuration {
             String newline)
     {
         super(commandline,
+                appName,
                 processId,
                 flagIsDebugMode,
                 flagShowHelpPrompt,

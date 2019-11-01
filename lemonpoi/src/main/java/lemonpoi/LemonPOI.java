@@ -9,9 +9,10 @@ public class LemonPOI {
     private Configuration cfg;
 
     public void run(final String[] args) {
+        String appName = this.getClass().getSimpleName().toLowerCase();
 
         try {
-            POITemplate template = new POITemplate(args);
+            POITemplate template = new POITemplate(args, appName);
             Builder builder = new POIBuilder();
             cfg = template.configure(builder);
             dispatchByOperation(cfg);

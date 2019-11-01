@@ -1,16 +1,17 @@
 package lemonade.configuration;
 
-import java.lang.management.ManagementFactory;
-import java.util.Optional;
-
 import org.apache.commons.cli.*;
+
+import java.lang.management.ManagementFactory;
 
 public abstract class CLITemplate implements Template {
     private final String[] commandline;
+    private final String appName;
     private Options optionDefinitions;
 
-    public CLITemplate(final String[] args) {
-        commandline = args;
+    public CLITemplate(final String[] commandline, final String appName) {
+        this.commandline = commandline;
+        this.appName = appName;
     }
 
     /*
@@ -77,7 +78,7 @@ public abstract class CLITemplate implements Template {
     }
 
     private void printHelpText() {
-        String prefix = "java -jar morphcx.jar";
+        String prefix = "java -jar " + appName + ".jar";
         String header = "where parameter options are:";
         String footer = "";
         HelpFormatter formatter = new HelpFormatter();

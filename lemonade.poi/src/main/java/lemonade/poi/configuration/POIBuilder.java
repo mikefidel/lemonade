@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public class POIBuilder implements Builder {
     private String[] commandline;
+    private String appName;
     private String processId;
     private boolean flagIsDebugMode;
     private boolean flagShowHelpPrompt;
@@ -20,6 +21,7 @@ public class POIBuilder implements Builder {
     public Configuration getInstance() {
         return new Configuration(
                 commandline,
+                appName,
                 processId,
                 flagIsDebugMode,
                 flagShowHelpPrompt,
@@ -32,6 +34,11 @@ public class POIBuilder implements Builder {
     @Override
     public void setCommandline(String[] commandline) {
         this.commandline = commandline;
+    }
+
+    @Override
+    public void setAppName(String appName) {
+        this.appName = appName;
     }
 
     @Override

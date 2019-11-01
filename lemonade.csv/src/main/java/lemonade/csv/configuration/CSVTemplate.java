@@ -1,4 +1,4 @@
-package lemonade.poi.configuration;
+package lemonade.csv.configuration;
 
 import lemonade.configuration.Builder;
 import lemonade.configuration.CLITemplate;
@@ -6,9 +6,9 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
-public final class POITemplate extends CLITemplate {
+public final class CSVTemplate extends CLITemplate {
 
-    public POITemplate(final String[] commandline, final String appName) {
+    public CSVTemplate(final String[] commandline, final String appName) {
         super(commandline, appName);
     }
 

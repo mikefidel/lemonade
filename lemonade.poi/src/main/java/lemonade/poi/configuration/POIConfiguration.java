@@ -8,6 +8,7 @@ public class POIConfiguration extends Configuration {
 
     public POIConfiguration(
             String[] commandline,
+            String appName,
             String processId,
             boolean flagIsDebugMode,
             boolean flagShowHelpPrompt,
@@ -17,6 +18,7 @@ public class POIConfiguration extends Configuration {
             Optional<String> outputFilename)
     {
         super(commandline,
+                appName,
                 processId,
                 flagIsDebugMode,
                 flagShowHelpPrompt,
@@ -29,6 +31,7 @@ public class POIConfiguration extends Configuration {
     @Override
     public String toString() {
         return "POIConfiguration{" +
+                "appName=" + appName +
                 "processId=" + processId +
                 ", flagIsDebugMode=" + flagIsDebugMode +
                 ", flagShowHelpPrompt=" + flagShowHelpPrompt +

@@ -4,7 +4,8 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public class Configuration {
-    private final String[] commandline;
+    protected final String[] commandline;
+    protected final String appName;
     protected final String processId;
     protected final boolean flagIsDebugMode;
     protected final boolean flagShowHelpPrompt;
@@ -15,6 +16,7 @@ public class Configuration {
 
     public Configuration(
             String[] commandline,
+            String appName,
             String processId,
             boolean flagIsDebugMode,
             boolean flagShowHelpPrompt,
@@ -24,6 +26,7 @@ public class Configuration {
             Optional<String> outputFilename)
     {
         this.commandline = commandline;
+        this.appName = appName;
         this.processId = processId;
         this.flagIsDebugMode = flagIsDebugMode;
         this.flagShowHelpPrompt = flagShowHelpPrompt;
@@ -35,6 +38,10 @@ public class Configuration {
 
     public String[] getCommandline() {
         return commandline;
+    }
+
+    public String getAppName() {
+        return appName;
     }
 
     public String getProcessId() {
@@ -69,6 +76,7 @@ public class Configuration {
     public String toString() {
         return "Configuration{" +
                 "commandline=" + Arrays.toString(commandline) +
+                ", appName=" + appName +
                 ", processId=" + processId +
                 ", flagIsDebugMode=" + flagIsDebugMode +
                 ", flagShowHelpPrompt=" + flagShowHelpPrompt +

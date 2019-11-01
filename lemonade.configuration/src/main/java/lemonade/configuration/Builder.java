@@ -8,6 +8,8 @@ public interface Builder {
 
     void setCommandline(String[] commandline);
 
+    void setAppName(String appName);
+
     void setProcessId(String processId);
 
     void setIsDebugMode(boolean debugMode);
