@@ -86,7 +86,7 @@ public abstract class CLITemplate implements Template {
     }
 
     private void processPID(Builder builder) {
-        String pid = ManagementFactory.getRuntimeMXBean().getName().split("@")[0];
+        String pid = Long.toString( ManagementFactory.getRuntimeMXBean().getPid() );
         builder.setProcessId(pid);
     }
 

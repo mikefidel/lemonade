@@ -6,15 +6,18 @@ import lemonade.csv.configuration.CSVBuilder;
 import lemonade.csv.configuration.CSVTemplate;
 
 public class LemonCSV {
-    private Configuration cfg;
+    private static String appName;
+
+    public LemonCSV() {
+        appName = this.getClass().getSimpleName().toLowerCase();
+    }
 
     public void run(final String[] args) {
-        String appName = this.getClass().getSimpleName().toLowerCase();
 
         try {
-            CSVTemplate template = new CSVTemplate(args, appName);
+            CSVTemplate template = new CSVTemplate(args, getAppName());
             Builder builder = new CSVBuilder();
-            cfg = template.configure(builder);
+            Configuration cfg = template.configure(builder);
             dispatchByOperation(cfg);
         } catch (Exception e) {
             e.printStackTrace();
@@ -29,9 +32,12 @@ public class LemonCSV {
         }
     }
 
+    public static String getAppName() {
+        return appName;
+    }
+
     public static void main(final String[] args) {
-        LemonCSV app = new LemonCSV();
-        app.run(args);
+        new LemonCSV().run(args);
     }
 
 }
