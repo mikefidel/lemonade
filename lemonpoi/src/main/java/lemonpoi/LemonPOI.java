@@ -5,21 +5,27 @@ import lemonade.configuration.Configuration;
 import lemonade.configuration.Template;
 import lemonade.poi.configuration.POIBuilder;
 import lemonade.poi.configuration.POITemplate;
+import org.apache.commons.cli.ParseException;
+
+import java.util.Arrays;
 
 public class LemonPOI {
-    private static String appName;
-    private Configuration cfg;
+    private String[] commandline;
+    private String appName;
 
-    public LemonPOI() {
+    public LemonPOI(final String[] args) {
+        commandline = (args == null) ? new String[0] : args;
         appName = this.getClass().getSimpleName().toLowerCase();
     }
 
-    public void run(final String[] args) {
+    public static void main(final String[] args) {
+        new LemonPOI(args).run();
+    }
+
+    public void run() {
 
         try {
-            Template template = new POITemplate(args, getAppName());
-            Builder builder = new POIBuilder();
-            cfg = template.configure(builder);
+            Configuration cfg = configureByCLI(commandline, appName);
             dispatchByOperation(cfg);
         } catch (Exception e) {
             e.printStackTrace();
@@ -27,19 +33,31 @@ public class LemonPOI {
         }
     }
 
-    private void dispatchByOperation(Configuration cfg) {
+    protected Configuration configureByCLI(final String[] commandline, String appName) throws ParseException {
+        Template template = new POITemplate(commandline, appName);
+        Builder builder = new POIBuilder();
+        return template.configure(builder);
+    }
 
-        if ( !cfg.isShowHelpPrompt() ) {
-            // TODO call abstract factory to initialize run
+    protected void dispatchByOperation(Configuration cfg) {
+        if (!cfg.isShowHelpPrompt()) {
+            // TODO
         }
     }
 
-    public static String getAppName() {
+    protected String[] getCommandline() {
+        return commandline;
+    }
+
+    protected String getAppName() {
         return appName;
     }
 
-    public static void main(final String[] args) {
-        new LemonPOI().run(args);
+    @Override
+    public String toString() {
+        return "LemonPOI{" +
+                "commandline=" + Arrays.toString(getCommandline()) +
+                ", appName='" + getAppName() + '\'' +
+                '}';
     }
-
 }

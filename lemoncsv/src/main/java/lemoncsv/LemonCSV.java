@@ -2,22 +2,30 @@ package lemoncsv;
 
 import lemonade.configuration.Builder;
 import lemonade.configuration.Configuration;
+import lemonade.configuration.Template;
 import lemonade.csv.configuration.CSVBuilder;
 import lemonade.csv.configuration.CSVTemplate;
+import org.apache.commons.cli.ParseException;
+
+import java.util.Arrays;
 
 public class LemonCSV {
-    private static String appName;
+    private String[] commandline;
+    private String appName;
 
-    public LemonCSV() {
+    public LemonCSV(final String[] args) {
+        commandline = (args == null) ? new String[0] : args;
         appName = this.getClass().getSimpleName().toLowerCase();
     }
 
-    public void run(final String[] args) {
+    public static void main(final String[] args) {
+        new LemonCSV(args).run();
+    }
+
+    public void run() {
 
         try {
-            CSVTemplate template = new CSVTemplate(args, getAppName());
-            Builder builder = new CSVBuilder();
-            Configuration cfg = template.configure(builder);
+            Configuration cfg = configureByCLI(commandline, appName);
             dispatchByOperation(cfg);
         } catch (Exception e) {
             e.printStackTrace();
@@ -25,19 +33,31 @@ public class LemonCSV {
         }
     }
 
-    private void dispatchByOperation(Configuration cfg) {
+    protected Configuration configureByCLI(final String[] commandline, String appName) throws ParseException {
+        Template template = new CSVTemplate(commandline, appName);
+        Builder builder = new CSVBuilder();
+        return template.configure(builder);
+    }
 
-        if ( !cfg.isShowHelpPrompt() ) {
-            // TODO call abstract factory to initialize run
+    protected void dispatchByOperation(final Configuration cfg) {
+        if (!cfg.isShowHelpPrompt()) {
+            // TODO
         }
     }
 
-    public static String getAppName() {
+    protected String[] getCommandline() {
+        return commandline;
+    }
+
+    protected String getAppName() {
         return appName;
     }
 
-    public static void main(final String[] args) {
-        new LemonCSV().run(args);
+    @Override
+    public String toString() {
+        return "LemonCSV{" +
+                "commandline=" + Arrays.toString(getCommandline()) +
+                ", appName='" + getAppName() + '\'' +
+                '}';
     }
-
 }
