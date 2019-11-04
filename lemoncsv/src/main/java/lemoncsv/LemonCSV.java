@@ -23,7 +23,6 @@ public class LemonCSV {
     }
 
     public void launch() {
-
         try {
             Configuration cfg = configureByCLI(commandline, appName);
             dispatchByOperation(cfg);
@@ -33,7 +32,7 @@ public class LemonCSV {
         }
     }
 
-    protected Configuration configureByCLI(final String[] commandline, String appName) throws ParseException {
+    protected Configuration configureByCLI(final String[] commandline, final String appName) throws ParseException {
         Template template = new CSVTemplate(commandline, appName);
         Builder builder = new CSVBuilder();
         return template.configure(builder);
@@ -45,11 +44,11 @@ public class LemonCSV {
         }
     }
 
-    protected String[] getCommandline() {
+    public String[] getCommandline() {
         return commandline;
     }
 
-    protected String getAppName() {
+    public String getAppName() {
         return appName;
     }
 

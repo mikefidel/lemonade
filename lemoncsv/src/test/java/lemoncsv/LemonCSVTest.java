@@ -1,4 +1,4 @@
-package lemonpoi;
+package lemoncsv;
 
 import lemonade.configuration.Configuration;
 import org.apache.commons.cli.ParseException;
@@ -8,12 +8,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class LemonPOITest {
+class LemonCSVTest {
 
     @Test
     @DisplayName("The program should protect itself from null arguments passed to it")
     void testThatConstructorCanProtectItselfFromNullArgs() {
-        LemonPOI app = new LemonPOI(null);
+        LemonCSV app = new LemonCSV(null);
         String[] actual = app.getCommandline();
         assertEquals(0, actual.length);
     }
@@ -22,8 +22,8 @@ class LemonPOITest {
     @DisplayName("A Configuration object should be produced")
     void testForProducingAConfigurationObject() throws ParseException {
         String[] args = {""};
-        LemonPOI app = new LemonPOI(args);
-        Configuration cfg = app.configureByCLI(args, "lemonpoi");
+        LemonCSV app = new LemonCSV(args);
+        Configuration cfg = app.configureByCLI(args, "lemoncsv");
         assertTrue(cfg instanceof Configuration);
     }
 
@@ -31,7 +31,7 @@ class LemonPOITest {
     @DisplayName("The calling classname should pass options")
     void testForPassingCommandlineArgs() {
         String[] args = {"arg-1", "arg-2", "arg-3", "arg-4"};
-        LemonPOI app = new LemonPOI(args);
+        LemonCSV app = new LemonCSV(args);
         String[] actual = app.getCommandline();
         String[] expected = {"arg-1", "arg-2", "arg-3", "arg-4"};
 
@@ -43,19 +43,19 @@ class LemonPOITest {
     }
 
     @Test
-    @DisplayName("The calling classname should be 'lemonpoi'")
+    @DisplayName("The calling classname should be 'lemoncsv'")
     void testForCorrectClassName() {
         String[] args = {"arg-1", "arg-2"};
-        LemonPOI app = new LemonPOI(args);
-        assertEquals("lemonpoi", app.getAppName());
+        LemonCSV app = new LemonCSV(args);
+        assertEquals("lemoncsv", app.getAppName());
     }
 
     @Test
     @DisplayName("toString() method should show all instance properties")
     void testToString() {
         String[] args = {"arg-1", "arg-2"};
-        LemonPOI app = new LemonPOI(args);
-        String expected = "LemonPOI{commandline=[arg-1, arg-2], appName='lemonpoi'}";
+        LemonCSV app = new LemonCSV(args);
+        String expected = "LemonCSV{commandline=[arg-1, arg-2], appName='lemoncsv'}";
         String actual = app.toString();
         assertEquals(expected, actual);
     }

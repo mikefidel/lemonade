@@ -23,9 +23,8 @@ public class LemonPOI {
     }
 
     public void launch() {
-
         try {
-            Configuration cfg = configureByCLI(commandline, appName);
+            Configuration cfg = configureByCLI(getCommandline(), getAppName());
             dispatchByOperation(cfg);
         } catch (Exception e) {
             e.printStackTrace();
@@ -33,23 +32,23 @@ public class LemonPOI {
         }
     }
 
-    protected Configuration configureByCLI(final String[] commandline, String appName) throws ParseException {
+    protected Configuration configureByCLI(final String[] commandline, final String appName) throws ParseException {
         Template template = new POITemplate(commandline, appName);
         Builder builder = new POIBuilder();
         return template.configure(builder);
     }
 
-    protected void dispatchByOperation(Configuration cfg) {
+    protected void dispatchByOperation(final Configuration cfg) {
         if (!cfg.isShowHelpPrompt()) {
             // TODO
         }
     }
 
-    protected String[] getCommandline() {
+    public String[] getCommandline() {
         return commandline;
     }
 
-    protected String getAppName() {
+    public String getAppName() {
         return appName;
     }
 
