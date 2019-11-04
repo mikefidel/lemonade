@@ -19,10 +19,10 @@ public class LemonPOI {
     }
 
     public static void main(final String[] args) {
-        new LemonPOI(args).run();
+        new LemonPOI(args).launch();
     }
 
-    public void run() {
+    public void launch() {
 
         try {
             Configuration cfg = configureByCLI(commandline, appName);

@@ -19,10 +19,10 @@ public class LemonCSV {
     }
 
     public static void main(final String[] args) {
-        new LemonCSV(args).run();
+        new LemonCSV(args).launch();
     }
 
-    public void run() {
+    public void launch() {
 
         try {
             Configuration cfg = configureByCLI(commandline, appName);
