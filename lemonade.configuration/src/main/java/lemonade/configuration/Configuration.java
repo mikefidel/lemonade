@@ -23,8 +23,7 @@ public class Configuration {
             boolean flagUsesInputFile,
             boolean flagUsesOutputFile,
             Optional<String> inputFilename,
-            Optional<String> outputFilename)
-    {
+            Optional<String> outputFilename) {
         this.commandline = commandline;
         this.appName = appName;
         this.processId = processId;
@@ -65,11 +64,11 @@ public class Configuration {
     }
 
     public Optional<String> getInputFilename() {
-        return inputFilename;
+        return Optional.ofNullable(inputFilename).orElse(Optional.of(""));
     }
 
     public Optional<String> getOutputFilename() {
-        return outputFilename;
+        return Optional.ofNullable(outputFilename).orElse(Optional.of(""));
     }
 
     @Override
