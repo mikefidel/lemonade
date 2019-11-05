@@ -2,6 +2,13 @@ package lemonade.configuration;
 
 import java.util.Optional;
 
+/**
+ * Builder is an interface associated with Configuration objects. It defines:
+ * - abstract setter methods shared by all Configuration types
+ * - an abstract method used for instantiating Configuration objects
+ * <p>
+ * This interface may be extended by sub-interfaces having type-specific properties.
+ */
 public interface Builder {
 
     Configuration getInstance();
