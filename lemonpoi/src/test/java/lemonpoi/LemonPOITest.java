@@ -1,6 +1,7 @@
 package lemonpoi;
 
 import lemonade.configuration.AbstractConfiguration;
+import lemonade.configuration.Configuration;
 import org.apache.commons.cli.ParseException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,7 @@ class LemonPOITest {
     void testForProducingAConfigurationObject() throws ParseException {
         String[] args = {""};
         LemonPOI app = new LemonPOI(args);
-        AbstractConfiguration cfg = app.configureByCLI(args, "lemonpoi");
+        Configuration cfg = app.configureByCLI(args, "lemonpoi");
         assertTrue(cfg instanceof AbstractConfiguration);
     }
 

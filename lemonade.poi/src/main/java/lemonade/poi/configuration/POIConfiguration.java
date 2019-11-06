@@ -8,7 +8,7 @@ import java.util.Optional;
 /**
  * POIConfiguration is the concrete implementation class for the application configuration object.
  */
-public class POIConfiguration extends AbstractConfiguration {
+public final class POIConfiguration extends AbstractConfiguration {
 
     public POIConfiguration(
             String[] commandline,
@@ -31,7 +31,6 @@ public class POIConfiguration extends AbstractConfiguration {
                 inputFilename,
                 outputFilename);
     }
-
 
     /**
      * Overrides Object.toString()

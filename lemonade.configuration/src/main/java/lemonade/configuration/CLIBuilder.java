@@ -24,8 +24,6 @@ public abstract class CLIBuilder implements Builder {
 
     public abstract AbstractConfiguration getInstance();
 
-    public abstract String toString();
-
     public void setCommandline(String[] commandline) {
         this.commandline = commandline;
     }

@@ -11,9 +11,7 @@ import java.util.Optional;
  */
 public interface Builder {
 
-    AbstractConfiguration getInstance();
-
-    String toString();
+    Configuration getInstance();
 
     void setCommandline(String[] commandline);
 
@@ -32,5 +30,7 @@ public interface Builder {
     void setInputFilename(Optional<String> inputFilename);
 
     void setOutputFilename(Optional<String> outputFilename);
+
+    String toString();
 
 }

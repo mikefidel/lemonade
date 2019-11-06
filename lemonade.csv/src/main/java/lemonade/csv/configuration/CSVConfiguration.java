@@ -8,7 +8,7 @@ import java.util.Optional;
 /**
  * CSVConfiguration is the concrete implementation class for the application configuration object.
  */
-public class CSVConfiguration extends AbstractConfiguration {
+public final class CSVConfiguration extends AbstractConfiguration {
     private final char delimiter;
     private final String newline;
 
@@ -39,17 +39,27 @@ public class CSVConfiguration extends AbstractConfiguration {
         this.newline = newline;
     }
 
+
+    /**
+     * Getter method
+     * @return character used to delimit individual fields, usually a tab or a comma character.
+     */
     public char getDelimiter() {
         return delimiter;
     }
 
+
+    /**
+     * Getter method
+     * @return the sequence of characters denoting a "new line" and which vary among OS platforms.
+     */
     public String getNewline() {
         return newline;
     }
 
     /**
      * Overrides Object.toString()
-     * @return state of the POIConfiguration object properties as a formatted string.
+     * @return state of the CSVConfiguration object properties as a formatted string.
      */
     @Override
     public String toString() {
