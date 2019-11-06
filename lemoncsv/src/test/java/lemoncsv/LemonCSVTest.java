@@ -1,6 +1,6 @@
 package lemoncsv;
 
-import lemonade.configuration.Configuration;
+import lemonade.configuration.AbstractConfiguration;
 import org.apache.commons.cli.ParseException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,8 +23,8 @@ class LemonCSVTest {
     void testForProducingAConfigurationObject() throws ParseException {
         String[] args = {""};
         LemonCSV app = new LemonCSV(args);
-        Configuration cfg = app.configureByCLI(args, "lemoncsv");
-        assertTrue(cfg instanceof Configuration);
+        AbstractConfiguration cfg = app.configureByCLI(args, "lemoncsv");
+        assertTrue(cfg instanceof AbstractConfiguration);
     }
 
     @Test

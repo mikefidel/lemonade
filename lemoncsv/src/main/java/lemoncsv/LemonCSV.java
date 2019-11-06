@@ -1,7 +1,7 @@
 package lemoncsv;
 
 import lemonade.configuration.Builder;
-import lemonade.configuration.Configuration;
+import lemonade.configuration.AbstractConfiguration;
 import lemonade.configuration.Template;
 import lemonade.csv.configuration.CSVBuilder;
 import lemonade.csv.configuration.CSVTemplate;
@@ -24,7 +24,7 @@ public class LemonCSV {
 
     public void launch() {
         try {
-            Configuration cfg = configureByCLI(commandline, appName);
+            AbstractConfiguration cfg = configureByCLI(commandline, appName);
             dispatchByOperation(cfg);
         } catch (Exception e) {
             e.printStackTrace();
@@ -32,13 +32,13 @@ public class LemonCSV {
         }
     }
 
-    protected Configuration configureByCLI(final String[] commandline, final String appName) throws ParseException {
+    protected AbstractConfiguration configureByCLI(final String[] commandline, final String appName) throws ParseException {
         Template template = new CSVTemplate(commandline, appName);
         Builder builder = new CSVBuilder();
         return template.configure(builder);
     }
 
-    protected void dispatchByOperation(final Configuration cfg) {
+    protected void dispatchByOperation(final AbstractConfiguration cfg) {
         if (!cfg.isShowHelpPrompt()) {
             // TODO
         }

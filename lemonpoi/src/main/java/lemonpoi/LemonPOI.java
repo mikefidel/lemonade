@@ -1,7 +1,7 @@
 package lemonpoi;
 
 import lemonade.configuration.Builder;
-import lemonade.configuration.Configuration;
+import lemonade.configuration.AbstractConfiguration;
 import lemonade.configuration.Template;
 import lemonade.poi.configuration.POIBuilder;
 import lemonade.poi.configuration.POITemplate;
@@ -24,7 +24,7 @@ public class LemonPOI {
 
     public void launch() {
         try {
-            Configuration cfg = configureByCLI(getCommandline(), getAppName());
+            AbstractConfiguration cfg = configureByCLI(getCommandline(), getAppName());
             dispatchByOperation(cfg);
         } catch (Exception e) {
             e.printStackTrace();
@@ -32,13 +32,13 @@ public class LemonPOI {
         }
     }
 
-    protected Configuration configureByCLI(final String[] commandline, final String appName) throws ParseException {
+    protected AbstractConfiguration configureByCLI(final String[] commandline, final String appName) throws ParseException {
         Template template = new POITemplate(commandline, appName);
         Builder builder = new POIBuilder();
         return template.configure(builder);
     }
 
-    protected void dispatchByOperation(final Configuration cfg) {
+    protected void dispatchByOperation(final AbstractConfiguration cfg) {
         if (!cfg.isShowHelpPrompt()) {
             // TODO
         }

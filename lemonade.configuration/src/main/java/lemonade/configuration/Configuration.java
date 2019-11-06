@@ -1,88 +1,32 @@
 package lemonade.configuration;
 
-import java.util.Arrays;
 import java.util.Optional;
 
-public class Configuration {
-    protected final String[] commandline;
-    protected final String appName;
-    protected final String processId;
-    protected final boolean flagIsDebugMode;
-    protected final boolean flagShowHelpPrompt;
-    protected final boolean flagUsesInputFile;
-    protected final boolean flagUsesOutputFile;
-    protected final Optional<String> inputFilename;
-    protected final Optional<String> outputFilename;
+/**
+ * Configuration objects are expected to be immutable and possess the mandatory
+ * configuration properties required by the application. The getter methods defined
+ * in this interface specify these properties.
+ */
+public interface Configuration {
 
-    public Configuration(
-            String[] commandline,
-            String appName,
-            String processId,
-            boolean flagIsDebugMode,
-            boolean flagShowHelpPrompt,
-            boolean flagUsesInputFile,
-            boolean flagUsesOutputFile,
-            Optional<String> inputFilename,
-            Optional<String> outputFilename) {
-        this.commandline = commandline;
-        this.appName = appName;
-        this.processId = processId;
-        this.flagIsDebugMode = flagIsDebugMode;
-        this.flagShowHelpPrompt = flagShowHelpPrompt;
-        this.flagUsesInputFile = flagUsesInputFile;
-        this.flagUsesOutputFile = flagUsesOutputFile;
-        this.inputFilename = inputFilename;
-        this.outputFilename = outputFilename;
-    }
+    String[] getCommandline();
 
-    public String[] getCommandline() {
-        return commandline;
-    }
+    String getAppName();
 
-    public String getAppName() {
-        return appName;
-    }
+    String getProcessId();
 
-    public String getProcessId() {
-        return processId;
-    }
+    boolean isDebugMode();
 
-    public boolean isDebugMode() {
-        return flagIsDebugMode;
-    }
+    boolean isShowHelpPrompt();
 
-    public boolean isShowHelpPrompt() {
-        return flagShowHelpPrompt;
-    }
+    boolean usesInputFile();
 
-    public boolean usesInputFile() {
-        return flagUsesInputFile;
-    }
+    boolean usesOutputFile();
 
-    public boolean usesOutputFile() {
-        return flagUsesOutputFile;
-    }
+    Optional<String> getInputFilename();
 
-    public Optional<String> getInputFilename() {
-        return Optional.ofNullable(inputFilename).orElse(Optional.of(""));
-    }
+    Optional<String> getOutputFilename();
 
-    public Optional<String> getOutputFilename() {
-        return Optional.ofNullable(outputFilename).orElse(Optional.of(""));
-    }
+    String toString();
 
-    @Override
-    public String toString() {
-        return "Configuration{" +
-                "commandline=" + Arrays.toString(commandline) +
-                ", appName=" + appName +
-                ", processId=" + processId +
-                ", flagIsDebugMode=" + flagIsDebugMode +
-                ", flagShowHelpPrompt=" + flagShowHelpPrompt +
-                ", flagUsesInputFile=" + flagUsesInputFile +
-                ", flagUsesOutputFile=" + flagUsesOutputFile +
-                ", inputFilename=" + inputFilename +
-                ", outputFilename=" + outputFilename +
-                '}';
-    }
 }

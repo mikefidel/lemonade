@@ -4,6 +4,6 @@ import org.apache.commons.cli.ParseException;
 
 public interface Template {
 
-    Configuration configure(Builder builder) throws ParseException;
+    AbstractConfiguration configure(Builder builder) throws ParseException;
 
 }

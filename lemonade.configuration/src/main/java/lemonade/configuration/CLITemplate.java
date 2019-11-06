@@ -47,7 +47,7 @@ public abstract class CLITemplate implements Template {
      * @throws ParseException when an invalid option is found in the commandline passed when the
      *                        application is invoked.
      */
-    public final Configuration configure(final Builder builder) throws ParseException {
+    public final AbstractConfiguration configure(final Builder builder) throws ParseException {
         CommandLine parsedCommandline;
 
         optionDefinitions = defineOptions();

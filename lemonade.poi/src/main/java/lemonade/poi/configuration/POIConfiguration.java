@@ -1,10 +1,14 @@
 package lemonade.poi.configuration;
 
-import lemonade.configuration.Configuration;
+import lemonade.configuration.AbstractConfiguration;
 
+import java.util.Arrays;
 import java.util.Optional;
 
-public class POIConfiguration extends Configuration {
+/**
+ * POIConfiguration is the concrete implementation class for the application configuration object.
+ */
+public class POIConfiguration extends AbstractConfiguration {
 
     public POIConfiguration(
             String[] commandline,
@@ -28,17 +32,23 @@ public class POIConfiguration extends Configuration {
                 outputFilename);
     }
 
+
+    /**
+     * Overrides Object.toString()
+     * @return state of the POIConfiguration object properties as a formatted string.
+     */
     @Override
     public String toString() {
         return "POIConfiguration{" +
-                "appName=" + appName +
-                "processId=" + processId +
-                ", flagIsDebugMode=" + flagIsDebugMode +
-                ", flagShowHelpPrompt=" + flagShowHelpPrompt +
-                ", flagUsesInputFile=" + flagUsesInputFile +
-                ", flagUsesOutputFile=" + flagUsesOutputFile +
-                ", inputFilename=" + inputFilename +
-                ", outputFilename=" + outputFilename +
+                "commandline=" + Arrays.toString(getCommandline()) +
+                ", appName=" + getAppName() +
+                ", processId=" + getProcessId() +
+                ", flagIsDebugMode=" + isDebugMode() +
+                ", flagShowHelpPrompt=" + isShowHelpPrompt() +
+                ", flagUsesInputFile=" + usesInputFile() +
+                ", flagUsesOutputFile=" + usesOutputFile() +
+                ", inputFilename=" + getInputFilename() +
+                ", outputFilename=" + getOutputFilename() +
                 '}';
     }
 

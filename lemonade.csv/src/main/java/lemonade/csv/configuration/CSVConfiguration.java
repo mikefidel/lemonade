@@ -1,10 +1,14 @@
 package lemonade.csv.configuration;
 
-import lemonade.configuration.Configuration;
+import lemonade.configuration.AbstractConfiguration;
 
+import java.util.Arrays;
 import java.util.Optional;
 
-public class CSVConfiguration extends Configuration {
+/**
+ * CSVConfiguration is the concrete implementation class for the application configuration object.
+ */
+public class CSVConfiguration extends AbstractConfiguration {
     private final char delimiter;
     private final String newline;
 
@@ -42,4 +46,26 @@ public class CSVConfiguration extends Configuration {
     public String getNewline() {
         return newline;
     }
+
+    /**
+     * Overrides Object.toString()
+     * @return state of the POIConfiguration object properties as a formatted string.
+     */
+    @Override
+    public String toString() {
+        return "CSVConfiguration{" +
+                "commandline=" + Arrays.toString(getCommandline()) +
+                ", appName=" + getAppName() +
+                ", processId=" + getProcessId() +
+                ", flagIsDebugMode=" + isDebugMode() +
+                ", flagShowHelpPrompt=" + isShowHelpPrompt() +
+                ", flagUsesInputFile=" + usesInputFile() +
+                ", flagUsesOutputFile=" + usesOutputFile() +
+                ", inputFilename=" + getInputFilename() +
+                ", outputFilename=" + getOutputFilename() +
+                ", delimiter=" + getDelimiter() +
+                ", newline=" + getNewline() +
+                '}';
+    }
+
 }

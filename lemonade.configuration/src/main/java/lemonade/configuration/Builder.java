@@ -11,7 +11,9 @@ import java.util.Optional;
  */
 public interface Builder {
 
-    Configuration getInstance();
+    AbstractConfiguration getInstance();
+
+    String toString();
 
     void setCommandline(String[] commandline);
 
