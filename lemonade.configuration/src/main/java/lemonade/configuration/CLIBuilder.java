@@ -53,12 +53,12 @@ public abstract class CLIBuilder implements Builder {
         flagUsesOutputFile = usesOutputFile;
     }
 
-    public void setInputFilename(Optional<String> inputFilename) {
-        // Todo optional processing
+    public void setInputFilename(Optional<String> filename) {
+        inputFilename = filename;
     }
 
-    public void setOutputFilename(Optional<String> outputFilename) {
-        // Todo optional processing
+    public void setOutputFilename(Optional<String> filename) {
+        outputFilename = filename;
     }
 
 }

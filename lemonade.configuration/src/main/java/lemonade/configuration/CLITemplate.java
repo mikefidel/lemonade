@@ -62,44 +62,40 @@ public abstract class CLITemplate implements Template {
     }
 
     /**
-     * This method is the 1st of 3 steps that Apache CLI uses to process command-line options. All valid
-     * options are defined within here. Type-specific Configuration options are defined in the subclass
+     * This method is the 1st of 3 steps that Apache CLI uses to process command-line options.
+     * All valid shared options are defined here; a shared option is an option that can be used
+     * in all invoking command-lines. Extended options are defined in Template subclasses
      * associated with that type.
      *
      * @return an Options object containing valid options and associated parameters.
      */
-    protected Options defineSharedOptions() throws ParseException {
+    private Options defineSharedOptions() throws ParseException {
         Options options = new Options();
 
         options.addOption(
-                Option.builder(CLIOptionConstants.OPT_HELP)
-                        .longOpt(CLIOptionConstants.LONG_OPT_HELP)
+                Option.builder(SharedCLIOptionConstants.OPT_HELP)
+                        .longOpt(SharedCLIOptionConstants.LONG_OPT_HELP)
                         .desc("Displays this help information.")
                         .build()
         );
         options.addOption(
-                Option.builder(CLIOptionConstants.OPT_DEBUG)
-                        .longOpt(CLIOptionConstants.LONG_OPT_DEBUG)
+                Option.builder(SharedCLIOptionConstants.OPT_DEBUG)
+                        .longOpt(SharedCLIOptionConstants.LONG_OPT_DEBUG)
                         .desc("A flag used for debugging and development purposes. < -X | --DEBUG >")
                         .build()
         );
         options.addOption(
-                Option.builder(CLIOptionConstants.OPT_INPUT)
-                        .longOpt(CLIOptionConstants.LONG_OPT_INPUT)
+                Option.builder(SharedCLIOptionConstants.OPT_INPUT)
+                        .longOpt(SharedCLIOptionConstants.LONG_OPT_INPUT)
                         .hasArg()
                         .desc("Full input path and file specification. Default: input comes from STDIN rather than a file.")
                         .build()
         );
         options.addOption(
-                Option.builder(CLIOptionConstants.OPT_OUTPUT)
-                        .longOpt(CLIOptionConstants.LONG_OPT_OUTPUT)
+                Option.builder(SharedCLIOptionConstants.OPT_OUTPUT)
+                        .longOpt(SharedCLIOptionConstants.LONG_OPT_OUTPUT)
                         .hasArg()
                         .desc("Full output path and file specification. Default: output sent to STDOUT rather than a file.")
-                        .build()
-        );
-        options.addOption(
-                Option.builder(CLIOptionConstants.OPT_SERVER)
-                        .desc("Program to run as server process. IO is forced to STDIN and STDOUT.")
                         .build()
         );
 
@@ -127,17 +123,19 @@ public abstract class CLITemplate implements Template {
         processPID(builder);
         processShowHelpFlag(builder, parsedCommandline);
         processDebugModeFlag(builder, parsedCommandline);
+        processInputFilename(builder, parsedCommandline);
+        processOutputFilename(builder, parsedCommandline);
 
-        // TODO other base options
+        // TODO resolve other shared options
 
     }
 
     private void processDebugModeFlag(final Builder builder, final CommandLine parsedCommandline) {
-        builder.setIsDebugMode(parsedCommandline.hasOption(CLIOptionConstants.LONG_OPT_DEBUG) ? true : false);
+        builder.setIsDebugMode(parsedCommandline.hasOption(SharedCLIOptionConstants.LONG_OPT_DEBUG));
     }
 
     private void processShowHelpFlag(final Builder builder, final CommandLine parsedCommandline) {
-        if (parsedCommandline.hasOption((CLIOptionConstants.LONG_OPT_HELP))) {
+        if (parsedCommandline.hasOption((SharedCLIOptionConstants.LONG_OPT_HELP))) {
             builder.setShowHelpPrompt(true);
             printHelpText();
         } else {
@@ -162,10 +160,28 @@ public abstract class CLITemplate implements Template {
         builder.setCommandline(commandline);
     }
 
+    private void processInputFilename(final Builder builder, final CommandLine parsedCommandline) {
+        if (parsedCommandline.hasOption(SharedCLIOptionConstants.OPT_INPUT)) {
+            builder.setUsesInputFile(true);
+            builder.setInputFilename(java.util.Optional.ofNullable(parsedCommandline.getOptionValue(SharedCLIOptionConstants.OPT_INPUT)));
+        } else {
+            builder.setInputFilename(java.util.Optional.empty());
+        }
+    }
+
+    private void processOutputFilename(final Builder builder, final CommandLine parsedCommandline) {
+        if (parsedCommandline.hasOption(SharedCLIOptionConstants.OPT_OUTPUT)) {
+            builder.setUsesOutputFile(true);
+            builder.setOutputFilename(java.util.Optional.ofNullable(parsedCommandline.getOptionValue(SharedCLIOptionConstants.OPT_OUTPUT)));
+        } else {
+            builder.setOutputFilename(java.util.Optional.empty());
+        }
+    }
+
     /**
      * Constants shared when processing all command-line options
      */
-    public static class CLIOptionConstants {
+    public static class SharedCLIOptionConstants {
 
         public static final String OPT_HELP = "h";
         public static final String LONG_OPT_HELP = "help";
@@ -179,22 +195,6 @@ public abstract class CLITemplate implements Template {
         public static final String OPT_OUTPUT = "o";
         public static final String LONG_OPT_OUTPUT = "output";
 
-        public static final String OPT_NEWLINE = "n";
-        public static final String LONG_OPT_NEWLINE = "newline";
-
-        public static final String OPT_SERVER = "S";
-
-//        public static final char TAB = '\t';
-//        public static final char COMMA = ',';
-//
-//        public static final String WINDOWS = "WINDOWS";
-//        public static final String LINUX = "LINUX";
-//        public static final String OSX = "OSX";
-//        public static final String OLDMAC = "OLDMAC";
-//        public static final String SYSTEM = "SYSTEM";
-//        public static final String ESCAPE_N = "\n";
-//        public static final String ESCAPE_R = "\r";
-//        public static final String ESCAPE_R_ESCAPE_N = "\r\n";
     }
 
 }

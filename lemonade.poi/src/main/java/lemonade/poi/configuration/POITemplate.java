@@ -22,10 +22,7 @@ public final class POITemplate extends CLITemplate {
     }
 
     /**
-     * This method interrogates and resolves POI-specific options found on the commandline
-     * when the program is invoked.
-     *
-     * POI does not have commandline options to resolve at the present time. Only base options
+     * POI does not have command-line options to resolve at the present time. Only base options
      * should be processed.
      */
     @Override
