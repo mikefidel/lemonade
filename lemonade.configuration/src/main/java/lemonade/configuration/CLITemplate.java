@@ -5,8 +5,8 @@ import org.apache.commons.cli.*;
 import java.lang.management.ManagementFactory;
 
 /**
- * CLITemplate is an abstract class used for processing commandline options input
- * by the user when invoking the application from a commandline. It is based on
+ * CLITemplate is an abstract class used for processing command-line options input
+ * by the user when invoking the application from a command-line. It is based on
  * the software design Template pattern where a specific sequence of processing
  * steps must be followed, and whereby variations in these processing steps are
  * handled by concrete method implementations found in subclasses.
@@ -34,9 +34,10 @@ public abstract class CLITemplate implements Template {
     /*
     Methods implemented by subclasses.
      */
-    protected abstract Options defineOptions() throws ParseException;
 
-    protected abstract void resolveOptions(CommandLine parsedCommandline, Builder builder);
+    protected abstract Options defineExtendedOptions(Options extendedOptions) throws ParseException;
+
+    protected abstract void resolveExtendedOptions(CommandLine parsedCommandline, Builder builder);
 
     /**
      * This is the template method for creating Apache CLI-based Configuration objects.
@@ -44,17 +45,65 @@ public abstract class CLITemplate implements Template {
      * @param builder Builder object that contains all setter methods for the Configuration type being
      *                built, as well as methods involved in determining its property values.
      * @return resulting immutable Configuration object
-     * @throws ParseException when an invalid option is found in the commandline passed when the
+     * @throws ParseException when an invalid option is found in the command-line passed when the
      *                        application is invoked.
      */
     public final Configuration configure(final Builder builder) throws ParseException {
         CommandLine parsedCommandline;
 
-        optionDefinitions = defineOptions();
+        optionDefinitions = defineSharedOptions();
+        optionDefinitions = defineExtendedOptions(optionDefinitions);
+
         parsedCommandline = parseCommandline(optionDefinitions, commandline);
+
         resolveSharedOptions(parsedCommandline, builder);
-        resolveOptions(parsedCommandline, builder);
+        resolveExtendedOptions(parsedCommandline, builder);
         return builder.getInstance();
+    }
+
+    /**
+     * This method is the 1st of 3 steps that Apache CLI uses to process command-line options. All valid
+     * options are defined within here. Type-specific Configuration options are defined in the subclass
+     * associated with that type.
+     *
+     * @return an Options object containing valid options and associated parameters.
+     */
+    protected Options defineSharedOptions() throws ParseException {
+        Options options = new Options();
+
+        options.addOption(
+                Option.builder(CLIOptionConstants.OPT_HELP)
+                        .longOpt(CLIOptionConstants.LONG_OPT_HELP)
+                        .desc("Displays this help information.")
+                        .build()
+        );
+        options.addOption(
+                Option.builder(CLIOptionConstants.OPT_DEBUG)
+                        .longOpt(CLIOptionConstants.LONG_OPT_DEBUG)
+                        .desc("A flag used for debugging and development purposes. < -X | --DEBUG >")
+                        .build()
+        );
+        options.addOption(
+                Option.builder(CLIOptionConstants.OPT_INPUT)
+                        .longOpt(CLIOptionConstants.LONG_OPT_INPUT)
+                        .hasArg()
+                        .desc("Full input path and file specification. Default: input comes from STDIN rather than a file.")
+                        .build()
+        );
+        options.addOption(
+                Option.builder(CLIOptionConstants.OPT_OUTPUT)
+                        .longOpt(CLIOptionConstants.LONG_OPT_OUTPUT)
+                        .hasArg()
+                        .desc("Full output path and file specification. Default: output sent to STDOUT rather than a file.")
+                        .build()
+        );
+        options.addOption(
+                Option.builder(CLIOptionConstants.OPT_SERVER)
+                        .desc("Program to run as server process. IO is forced to STDIN and STDOUT.")
+                        .build()
+        );
+
+        return options;
     }
 
     private CommandLine parseCommandline(final Options options, final String[] cmdline) throws ParseException {
@@ -78,6 +127,7 @@ public abstract class CLITemplate implements Template {
         processPID(builder);
         processShowHelpFlag(builder, parsedCommandline);
         processDebugModeFlag(builder, parsedCommandline);
+
         // TODO other base options
 
     }
@@ -113,7 +163,7 @@ public abstract class CLITemplate implements Template {
     }
 
     /**
-     * Constants shared when processing all commandline options
+     * Constants shared when processing all command-line options
      */
     public static class CLIOptionConstants {
 
@@ -123,20 +173,16 @@ public abstract class CLITemplate implements Template {
         public static final String OPT_DEBUG = "X";
         public static final String LONG_OPT_DEBUG = "debug";
 
-//        private static final String OPT_INPUT = "i";
-//        private static final String LONG_OPT_INPUT =  "input";
-//
-//        private static final String OPT_NEWLINE = "n";
-//        private static final String LONG_OPT_NEWLINE = "newline";
-//
-//        private static final String OPT_OUTPUT = "o";
-//        private static final String LONG_OPT_OUTPUT = "output";
-//
-//        private static final String OPT_SERVER = "S";
-//
-//        private static final String CONVERT_CSV = "CSV";
-//        private static final String CONVERT_TSV = "TSV";
-//        private static final String CONVERT_EXCEL = "EXCEL";
+        public static final String OPT_INPUT = "i";
+        public static final String LONG_OPT_INPUT =  "input";
+
+        public static final String OPT_OUTPUT = "o";
+        public static final String LONG_OPT_OUTPUT = "output";
+
+        public static final String OPT_NEWLINE = "n";
+        public static final String LONG_OPT_NEWLINE = "newline";
+
+        public static final String OPT_SERVER = "S";
 
 //        public static final char TAB = '\t';
 //        public static final char COMMA = ',';

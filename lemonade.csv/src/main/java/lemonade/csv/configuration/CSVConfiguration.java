@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 /**
- * CSVConfiguration is the concrete implementation class for the application configuration object.
+ * CSVConfiguration is the implementation class for the application configuration object.
  */
 public final class CSVConfiguration extends AbstractConfiguration {
     private final char delimiter;

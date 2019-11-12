@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 /**
- * POIConfiguration is the concrete implementation class for the application configuration object.
+ * POIConfiguration is the implementation class for the application configuration object.
  */
 public final class POIConfiguration extends AbstractConfiguration {
 

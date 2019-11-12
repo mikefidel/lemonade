@@ -13,24 +13,18 @@ public final class CSVTemplate extends CLITemplate {
     }
 
     /**
-     * This method is the 1st of 3 steps that Apache CLI uses to process commandline options. All valid
-     * options are defined within here.
-     * @return an Options object containing all valid options and associated parameters.
+     * This method is the 1st of 3 steps that Apache CLI uses to process command-line options. Type=specific
+     * options are defined here. Shared Configuration options are defined in the Template object superclass.
+     *
+     * @return an Options object containing valid options and associated parameters.
      */
     @Override
-    protected Options defineOptions() {
-        Options options = new Options();
-
+    protected Options defineExtendedOptions(Options options) {
         options.addOption(
-                Option.builder(CLIOptionConstants.OPT_HELP)
-                        .longOpt(CLIOptionConstants.LONG_OPT_HELP)
-                        .desc("Displays this help information.")
-                        .build()
-        );
-        options.addOption(
-                Option.builder(CLIOptionConstants.OPT_DEBUG)
-                        .longOpt(CLIOptionConstants.LONG_OPT_DEBUG)
-                        .desc("A flag used for debugging and development purposes. < -X | --DEBUG >")
+                Option.builder(CLIOptionConstants.OPT_NEWLINE)
+                        .longOpt(CLIOptionConstants.LONG_OPT_NEWLINE)
+                        .hasArg()
+                        .desc("Platform-dependent newline characters. < WINDOWS | LINUX | OSX | OLDMAC | SYSTEM > Default: SYSTEM.")
                         .build()
         );
 
@@ -38,14 +32,14 @@ public final class CSVTemplate extends CLITemplate {
     }
 
     /**
-     * This method interrogates and resolves POI-specific options found on the commandline
+     * This method interrogates and resolves POI-specific options found on the command-line
      * when the program is invoked.
      *
-     * POI does not have commandline options to resolve at the present time. Only base options
+     * POI does not have command-line options to resolve at the present time. Only base options
      * should be processed.
      */
     @Override
-    protected void resolveOptions(CommandLine parsedCommandline, Builder builder) {
+    protected void resolveExtendedOptions(CommandLine parsedCommandline, Builder builder) {
         // There are no POI-specific options to resolve.
     }
 

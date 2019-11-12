@@ -3,8 +3,8 @@ package lemonade.poi.configuration;
 import lemonade.configuration.Builder;
 import lemonade.configuration.CLITemplate;
 import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 
 public final class POITemplate extends CLITemplate {
 
@@ -13,27 +13,11 @@ public final class POITemplate extends CLITemplate {
     }
 
     /**
-     * This method is the 1st of 3 steps that Apache CLI uses to process commandline options. All valid
-     * options are defined within here.
-     * @return an Options object containing all valid options and associated parameters.
+     * POI does not have commandline options to define. Only shared options
+     * should be processed.
      */
     @Override
-    protected Options defineOptions() {
-        Options options = new Options();
-
-        options.addOption(
-                Option.builder(CLIOptionConstants.OPT_HELP)
-                        .longOpt(CLIOptionConstants.LONG_OPT_HELP)
-                        .desc("Displays this help information.")
-                        .build()
-        );
-        options.addOption(
-                Option.builder(CLIOptionConstants.OPT_DEBUG)
-                        .longOpt(CLIOptionConstants.LONG_OPT_DEBUG)
-                        .desc("A flag used for debugging and development purposes. < -X | --DEBUG >")
-                        .build()
-        );
-
+    protected Options defineExtendedOptions(Options options) throws ParseException {
         return options;
     }
 
@@ -45,7 +29,7 @@ public final class POITemplate extends CLITemplate {
      * should be processed.
      */
     @Override
-    protected void resolveOptions(CommandLine parsedCommandline, Builder builder) {
+    protected void resolveExtendedOptions(CommandLine parsedCommandline, Builder builder) {
         // There are no POI-specific options to resolve.
     }
 

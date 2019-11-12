@@ -7,7 +7,8 @@ import java.util.Optional;
  * - abstract setter methods shared by all Configuration types
  * - an abstract method used for instantiating Configuration objects
  * <p>
- * This interface may be extended by sub-interfaces having type-specific properties.
+ * This interface may be extended by sub-interfaces having Configuration
+ * type-specific properties.
  */
 public interface Builder {
 

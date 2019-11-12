@@ -9,7 +9,8 @@ import java.util.Optional;
  * - an abstract method used for instantiating Configuration objects
  * - an abstract toString() method definition
  * <p>
- * It will be extended by sub-interfaces having type-specific properties and methods.
+ * It will be extended by sub-interfaces having Configuration type-specific properties and methods.
+ * The setter methods herein are called by methods in Template implementations.
  */
 public abstract class CLIBuilder implements Builder {
     protected String[] commandline;

@@ -7,7 +7,7 @@ import lemonade.configuration.CLIBuilder;
 import java.util.Arrays;
 
 /**
- * lemonade.csv.configuration.CSVBuilder is an concrete implementation class for CSV-type Configuration objects.
+ * lemonade.csv.configuration.CSVBuilder is an implementation class for CSV-type Configuration objects.
  */
 public final class CSVBuilderImpl extends CLIBuilder implements Builder, CSVBuilder {
     private char delimiter;

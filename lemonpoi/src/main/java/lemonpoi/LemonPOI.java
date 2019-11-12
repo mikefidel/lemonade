@@ -3,7 +3,7 @@ package lemonpoi;
 import lemonade.configuration.Builder;
 import lemonade.configuration.Configuration;
 import lemonade.configuration.Template;
-import lemonade.poi.configuration.POIBuilder;
+import lemonade.poi.configuration.POIBuilderImpl;
 import lemonade.poi.configuration.POITemplate;
 import org.apache.commons.cli.ParseException;
 
@@ -34,7 +34,7 @@ public class LemonPOI {
 
     protected Configuration configureByCLI(final String[] commandline, final String appName) throws ParseException {
         Template template = new POITemplate(commandline, appName);
-        Builder builder = new POIBuilder();
+        Builder builder = new POIBuilderImpl();
         return template.configure(builder);
     }
 

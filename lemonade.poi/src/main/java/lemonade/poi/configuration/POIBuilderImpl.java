@@ -6,9 +6,9 @@ import lemonade.configuration.AbstractConfiguration;
 import java.util.Arrays;
 
 /**
- * POIBuilder is an concrete implementation class for POI-type Configuration objects.
+ * POIBuilder is an implementation class for POI-type Configuration objects.
  */
-public final class POIBuilder extends CLIBuilder {
+public final class POIBuilderImpl extends CLIBuilder {
 
     @Override
     public AbstractConfiguration getInstance() {
