@@ -41,7 +41,7 @@
         <junit.jupiter.engine>5.5.2</junit.jupiter.engine>
         <commons-cli>1.4</commons-cli>
         <commons-csv>1.7</commons-csv>
-        <commons-poi-ooxml>4.1.0</commons-poi-ooxml>
+        <commons-poi-ooxml>5.4.0</commons-poi-ooxml>
     </properties>
 
     <dependencies>
